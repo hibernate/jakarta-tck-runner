@@ -1,0 +1,6 @@
+#!/bin/sh
+
+export DERBY_INSTALL_DIR=${DERBY_HOME}/derby-db
+echo "DERBY_INSTALL_DIR=${DERBY_INSTALL_DIR}"
+export DERBY_DATA_DIR=${DERBY_HOME}/data
+export DERBY_LOG_DIR=${DERBY_HOME}/logs
