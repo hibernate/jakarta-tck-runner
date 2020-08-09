@@ -17,7 +17,7 @@ source $SCRIPT_DIR/setenv
     set ts.home=${TS_HOME}
     ./gradlew clean syncDeps
     cd $TS_HOME/bin
-    ${ANT_HOME}/bin/ant -f initdb.xml init.derby
+    ${ANT_HOME}/bin/ant -f initdb.xml
     echo "Restoring original ${TS_HOME}/sql/derby/derby.ddl.persistence.sql"
     cp ${SCRIPT_DIR}/derby.ddl.persistence.sql-orig ${TS_HOME}/sql/derby/derby.ddl.persistence.sql
 }
