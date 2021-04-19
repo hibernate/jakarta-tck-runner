@@ -231,7 +231,7 @@ public final class TestUtil {
   public static void sleepSec(int s) {
     logTrace("Sleeping " + s + " seconds");
     try {
-      Thread.sleep(s * MILLI);
+      //Thread.sleep(s * MILLI);
     } catch (InterruptedException e) {
       logErr("Exception: " + e);
     }
@@ -256,7 +256,7 @@ public final class TestUtil {
   public static void sleepMsec(int s) {
     logTrace("Sleeping " + s + " milliseconds");
     try {
-      Thread.sleep(s);
+      //Thread.sleep(s);
     } catch (InterruptedException e) {
       logErr("Exception: " + e);
     }

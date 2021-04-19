@@ -723,7 +723,7 @@ public class Client extends PMClientBase {
         a.setName("two");
         // Sleep for 1 second
         try {
-          Thread.sleep(1 * 1000L);
+          //Thread.sleep(1 * 1000L);
         } catch (Exception ex) {
           ex.printStackTrace();
         }
@@ -781,7 +781,7 @@ public class Client extends PMClientBase {
         a.setName("two");
         // Sleep for 1 second
         try {
-          Thread.sleep(1 * 1000L);
+          //Thread.sleep(1 * 1000L);
         } catch (Exception ex) {
           ex.printStackTrace();
         }

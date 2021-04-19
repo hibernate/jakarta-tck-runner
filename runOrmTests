@@ -4,7 +4,7 @@
 #SCRIPT_DIR=`dirname $SCRIPT_PATH`
 SCRIPT_DIR=`pwd`
 
-source $SCRIPT_DIR/setenv
+#source $SCRIPT_DIR/setenv
 
 OUTPUT_PATH=$SCRIPT_DIR/logging/orm-test-output.txt
 

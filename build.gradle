@@ -28,7 +28,7 @@ repositories {
 defaultTasks 'syncDeps'
 
 ext {
-    hibernateVersion = '5.3.18.Final'
+    hibernateVersion = '5.4.30.Final'
     jteFileSourcePath = "${project.rootDir}/base-ts.jte"
     jteFileTargetPath = "${project.rootDir}/persistence-tck/bin/ts.jte"
 

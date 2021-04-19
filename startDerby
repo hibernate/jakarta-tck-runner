@@ -2,8 +2,8 @@
 
 SCRIPT_DIR=`pwd`
 
-source ${SCRIPT_DIR}/setenv
-source ${SCRIPT_DIR}/setDerbyEnv
+#source ${SCRIPT_DIR}/setenv
+#source ${SCRIPT_DIR}/setDerbyEnv
 
 (
     ## The only way I know to get Derby to store its data files in 

@@ -24,7 +24,7 @@
 
 hibernate.deps=
 
-tck.home=/home/gbadner/git/hibernate-orm-tck
+tck.home=/tck
 ts.home=${tck.home}/persistence-tck
 
 hibernate.resources=${tck.home}/resources

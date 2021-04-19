@@ -2,8 +2,8 @@
 
 SCRIPT_DIR=`pwd`
 
-source ${SCRIPT_DIR}/setenv
-source ${SCRIPT_DIR}/setDerbyEnv
+#source ${SCRIPT_DIR}/setenv
+#source ${SCRIPT_DIR}/setDerbyEnv
 
 echo "Creating (if it does not exist) ${DERBY_DATA_DIR}"
 mkdir -p ${DERBY_DATA_DIR}
@@ -14,7 +14,7 @@ echo "Deleting database (if it exists): ${DERBY_DATA_DIR}/derbyDB"
 rm -rf ${DERBY_DATA_DIR}/derbyDB
 
 echo "Starting Derby"
-sh ./startDerby
+${SCRIPT_DIR}/startDerby
 
-sh ./cleandb
+${SCRIPT_DIR}/cleandb
 

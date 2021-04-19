@@ -208,7 +208,7 @@ public abstract class ServiceEETest extends EETest {
         TestUtil.initClient(props);
         s = getPropsReady(argv, props);
         try {
-          Thread.sleep(iLogDelaySeconds);
+          //Thread.sleep(iLogDelaySeconds);
           TestUtil.logTrace("SLEPT FOR:  " + iLogDelaySeconds);
         } catch (InterruptedException e) {
           logErr("Exception: " + e);

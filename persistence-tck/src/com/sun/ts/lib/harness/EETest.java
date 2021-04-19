@@ -336,7 +336,7 @@ public abstract class EETest implements Serializable {
       TestUtil.initClient(props);
       retStatus = getPropsReady(argv, props);
       try {
-        Thread.sleep(iLogDelaySeconds);
+        //Thread.sleep(iLogDelaySeconds);
       } catch (InterruptedException e) {
         logErr("Exception: " + e);
       }
@@ -378,7 +378,7 @@ public abstract class EETest implements Serializable {
       TestUtil.separator2();
       sTestStatus = getPropsReady(argv, p);
       try {
-        Thread.sleep(iLogDelaySeconds);
+        //Thread.sleep(iLogDelaySeconds);
       } catch (InterruptedException e) {
         logErr("Exception: " + e);
       }

@@ -3,7 +3,7 @@
 SCRIPT_PATH=`readlink -f $0`
 SCRIPT_DIR=`dirname $SCRIPT_PATH`
 
-source $SCRIPT_DIR/setenv
+#source $SCRIPT_DIR/setenv
 
 OUTPUT_FILE=$SCRIPT_DIR/logging/sig-test-output.txt
 
