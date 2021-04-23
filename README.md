@@ -1,38 +1,42 @@
-# hibernate-orm-tck
+# jakarta-tck-runner
 Scripts for running standalone Jakarta JPA TCK using Hibernate ORM
 
-Prerequisites:
+## Building the image
 
-1. ${JAVA_HOME} must be set.
+```
+docker build -t jakarta-tck-runner .
+```
 
-2. In base-ts.jte, the value for ${tck.home} must be set to the top-level directory path.
-   (e.g, tck.home=/home/gbadner/git/hibernate-orm-tck)
+## Environment variables
 
-3. In build.gradle, set ${hibernateVersion} to the Hibernate ORM version to be tested.
-   (e.g., hibernateVersion = '5.3.18.Final')
+### NO_SLEEP
+
+A usual TCK run will take very long (~8 hours). You can reduce this to ~2 hours by applying a patch that removes certain sleep statements.
+This can be done by passing the `NO_SLEEP` environment variable. The image can not do this automatically because the TCK may not be re-distributed under it's license when changed.
+
+### HIBERNATE_VERSION
+
+The hibernate version to use for testing.
 
 
-Download derby and ant:
-    sh ./download.sh
+## Running the TCK
 
-Setup and run the TCK:
+```
+docker rm -f tck
+docker run --name tck -e NO_SLEEP=true -e HIBERNATE_VERSION=5.5.0-SNAPSHOT jakarta-tck-runner
+```
 
-    # Setup Derby database; Hibernate-specific Derby DDL script is used.
-    # There may be java.sql.SQLSyntaxErrorException shown for DROP statements. These may be safely ignored.
-    sh ./setupDerby.sh
+If you want to test a self built version, map the locally installed hibernate jars through a volume mapping into the container:
 
-    # Run the tests
-    sh ./runSigTests
-    sh ./runOrmTests
-    
-    The logs can be found in: hibernate-orm-tck/logging/
+```
+docker run -v ~/.m2/repository/org/hibernate:/root/.m2/repository/org/hibernate -e NO_SLEEP=true -e HIBERNATE_VERSION=5.5.0-SNAPSHOT --name tck jakarta-tck-runner
+```
 
-    The TCK report can be found in: hibernate-orm-tck/persistence-tck/tmp/JTreport/
+## See the results
 
-To rerun the TCK:
+Copy the report to your local file system and the open the HTML report to see the details
 
-    # Stop the Derby database:
-    sh ./stopDerby
-    
-    Follow steps listed for "Setup and run the TCK:".
+```
+docker cp tck:/tck/persistence-tck/tmp/JTreport/ .
+```
 

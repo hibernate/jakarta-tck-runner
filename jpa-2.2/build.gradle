@@ -1,0 +1,84 @@
+/**
+ * The purpose of this build is to manage the 
+ * specific jars needed to use Hibernate as the 
+ * JPA persistence provider as part of the TCK.
+ * 
+ * The JPA TCK requires that this be a static list of
+ * jars, which obviously sucks when needing to update
+ * versions and dependencies.  This script automates 
+ * all of that using transitive dependencies and
+ * overwriting the JPA TCK "config" file.
+ */
+apply plugin: 'java'
+
+repositories {
+    mavenCentral()
+    mavenLocal()
+
+    maven {
+        name 'jboss-nexus'
+        url "http://repository.jboss.org/nexus/content/groups/public/"
+    }
+    maven {
+        name "jboss-snapshots"
+        url "http://snapshots.jboss.org/maven2/"
+    }
+}
+
+defaultTasks 'syncDeps'
+
+ext {
+    jteFileSourcePath = "${project.rootDir}/base-ts.jte"
+    jteFileTargetPath = "${project.rootDir}/persistence-tck/bin/ts.jte"
+
+    jtePropKey = 'hibernate.deps'
+}
+
+configurations {
+    all*.exclude group: 'xml-apis'
+}
+configurations.all {
+    // check for updates every build
+    resolutionStrategy.cacheChangingModulesFor 0, 'seconds'
+}
+
+dependencies {
+    compile( "org.hibernate:hibernate-core:${hibernateVersion}" ) {
+        changing = true
+    }
+    compile( "org.hibernate:hibernate-testing:${hibernateVersion}" ) {
+        transitive=false
+	changing = true
+    }
+    compile 'log4j:log4j:1.2.17'
+    //compile 'org.javassist:javassist:3.23.2-GA'
+    compile 'net.bytebuddy:byte-buddy:1.10.21'
+}
+
+wrapper {
+	gradleVersion = '4.10.3'
+	//distributionType = Wrapper.DistributionType.ALL
+}
+
+//task copyAllDependencies(type: Copy) {
+//    from configurations.compileClasspath
+//    into 'allLibs'
+//}
+
+task syncDeps {
+    doFirst {
+        Properties jteProps = new Properties();
+
+        project.file( jteFileSourcePath ).withReader { reader ->
+            jteProps.load( reader );
+        }
+
+        if ( jteProps.containsKey( jtePropKey ) ) {
+            jteProps.setProperty( jtePropKey, configurations.compile.getAsPath() );
+            project.file( jteFileTargetPath ).withWriter { writer ->
+                jteProps.store( writer, "${new Date().toString()} : Programatically written to update Hibernate dependencies under ${jtePropKey}" );
+            }
+        }
+    }
+}
+
