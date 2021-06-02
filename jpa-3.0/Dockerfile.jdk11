@@ -1,4 +1,4 @@
-FROM openjdk:8-jdk
+FROM openjdk:11-jdk
 
 ARG SPEC_VERSION=3.0
 ARG TCK_VERSION=3.0.0

@@ -10,11 +10,7 @@ docker build -t jakarta-tck-runner .
 ## Bulding a specific TCK version
 
 The image supports build arguments that allow to control which JDK base image should be used and which JPA TCK should be downloaded.
-These arguments can be passed with `--build-arg JDK_IMAGE=openjdk:11-jdk`.
-
-### JDK_IMAGE
-
-The JDK base image to use for the image i.e. `openjdk:11-jdk`.
+These arguments can be passed with `--build-arg TCK_VERSION=3.0.1`.
 
 ### SPEC_VERSION
 
