@@ -2,10 +2,9 @@
 
 SCRIPT_DIR=`pwd`
 
-OUTPUT_PATH=$SCRIPT_DIR/logging/orm-test-output.txt
+OUTPUT_PATH=$TS_HOME/tmp/orm-test-output.txt
 
 rm -f $OUTPUT_PATH
-mkdir -p $SCRIPT_DIR/logging/
 
 (
     cd $SCRIPT_DIR
@@ -15,7 +14,7 @@ mkdir -p $SCRIPT_DIR/logging/
 
 {
     echo "TS_HOME=${TS_HOME}"
-    TEST_PATH="$TS_HOME/src/com/sun/ts/tests/jpa"
+    TEST_PATH="$TS_HOME/src/com/sun/ts/tests"
 
     if [ "$1" != "" ]; then
         TEST_PATH=$TEST_PATH/$1
@@ -27,7 +26,5 @@ mkdir -p $SCRIPT_DIR/logging/
 
     cd $TEST_PATH
 
-##echo "Using ant from [`which ant`]"
-
-    ant runclient -Dfailonerror=false &>$OUTPUT_PATH
+    ant runclient -Dfailonerror=false | tee $OUTPUT_PATH
 }

@@ -2,10 +2,13 @@ FROM openjdk:8-jdk
 
 ARG SPEC_VERSION=2.2
 ARG TCK_VERSION=2.2.0
+ARG TCK_SHA=c9cdc30e0e462e875c80f0bd46b964dd8aa8c2a3b69ade49d11df7652f3b5c39
 ENV HIBERNATE_VERSION=5.5.0-SNAPSHOT
 
 ADD https://download.eclipse.org/jakartaee/persistence/${SPEC_VERSION}/jakarta-persistence-tck-${TCK_VERSION}.zip /
-RUN mkdir /tck \
+RUN cd / \
+	&& echo "${TCK_SHA} *jakarta-persistence-tck-${TCK_VERSION}.zip" | sha256sum -c - \
+	&& mkdir /tck \
 	&& unzip -q /jakarta-persistence-tck-${TCK_VERSION}.zip \
 	&& mv /persistence-tck /tck/persistence-tck \
 	&& rm /jakarta-persistence-tck-${TCK_VERSION}.zip
@@ -20,8 +23,7 @@ COPY build.gradle /tck/
 COPY cleandb /tck/
 COPY derby.ddl.persistence.sql /tck/
 COPY run.sh /tck/
-COPY runOrmTests /tck/
-COPY runSigTests /tck/
+COPY runTests /tck/
 COPY setupDerby.sh /tck/
 COPY startDerby /tck/
 

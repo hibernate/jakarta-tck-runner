@@ -7,5 +7,4 @@ if [ "x$NO_SLEEP" != "x" ]; then
 fi
 
 ${SCRIPT_DIR}/setupDerby.sh
-${SCRIPT_DIR}/runSigTests
-${SCRIPT_DIR}/runOrmTests
+${SCRIPT_DIR}/runTests
