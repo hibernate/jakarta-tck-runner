@@ -7,6 +7,12 @@ Scripts for running standalone Jakarta JPA TCK using Hibernate ORM
 docker build -t jakarta-tck-runner .
 ```
 
+## Building the JDK11 image
+
+```
+docker build -f Dockerfile.jdk11 -t jakarta-tck-runner .
+```
+
 ## Bulding a specific TCK version
 
 The image supports build arguments that allow to control which JDK base image should be used and which JPA TCK should be downloaded.
