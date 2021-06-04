@@ -8,7 +8,7 @@ rm -f $OUTPUT_PATH
 
 (
     cd $SCRIPT_DIR
-    gradle syncDeps -PhibernateVersion=$HIBERNATE_VERSION &>$OUTPUT_PATH
+    ./gradlew syncDeps -PhibernateVersion=$HIBERNATE_VERSION &>$OUTPUT_PATH
 )
 
 

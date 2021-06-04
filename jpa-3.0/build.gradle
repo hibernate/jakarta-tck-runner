@@ -9,7 +9,7 @@
  * all of that using transitive dependencies and
  * overwriting the JPA TCK "config" file.
  */
-apply plugin: 'java'
+apply plugin: 'java-library'
 
 repositories {
     mavenLocal()
@@ -17,11 +17,11 @@ repositories {
 
     maven {
         name 'jboss-nexus'
-        url "http://repository.jboss.org/nexus/content/groups/public/"
+        url "https://repository.jboss.org/nexus/content/groups/public/"
     }
     maven {
         name "jboss-snapshots"
-        url "http://snapshots.jboss.org/maven2/"
+        url "https://snapshots.jboss.org/maven2/"
     }
 }
 
@@ -43,16 +43,16 @@ configurations.all {
 }
 
 dependencies {
-    compile( "org.hibernate:hibernate-core-jakarta:${hibernateVersion}" ) {
+    api( "org.hibernate:hibernate-core-jakarta:${hibernateVersion}" ) {
         changing = true
     }
-    compile( "org.hibernate:hibernate-testing-jakarta:${hibernateVersion}" ) {
+    api( "org.hibernate:hibernate-testing-jakarta:${hibernateVersion}" ) {
         transitive=false
 	changing = true
     }
-    compile 'log4j:log4j:1.2.17'
-    //compile 'org.javassist:javassist:3.23.2-GA'
-    compile 'net.bytebuddy:byte-buddy:1.10.21'
+    api 'log4j:log4j:1.2.17'
+    //api 'org.javassist:javassist:3.23.2-GA'
+    api 'net.bytebuddy:byte-buddy:1.10.21'
 }
 
 wrapper {
@@ -74,7 +74,8 @@ task syncDeps {
         }
 
         if ( jteProps.containsKey( jtePropKey ) ) {
-            jteProps.setProperty( jtePropKey, configurations.compile.getAsPath() );
+			configurations.api.setCanBeResolved(true);
+            jteProps.setProperty( jtePropKey, configurations.api.getAsPath() );
             project.file( jteFileTargetPath ).withWriter { writer ->
                 jteProps.store( writer, "${new Date().toString()} : Programatically written to update Hibernate dependencies under ${jtePropKey}" );
             }
