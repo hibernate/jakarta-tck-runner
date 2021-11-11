@@ -43,16 +43,27 @@ configurations.all {
 }
 
 dependencies {
-    api( "org.hibernate:hibernate-core-jakarta:${hibernateVersion}" ) {
-        changing = true
-    }
-    api( "org.hibernate:hibernate-testing-jakarta:${hibernateVersion}" ) {
-        transitive=false
-	changing = true
-    }
-    api 'log4j:log4j:1.2.17'
-    //api 'org.javassist:javassist:3.23.2-GA'
-    api 'net.bytebuddy:byte-buddy:1.10.21'
+	if ( hibernateVersion.charAt(0) == '5' ) {
+		api( "org.hibernate:hibernate-core-jakarta:${hibernateVersion}" ) {
+			changing = true
+		}
+		api( "org.hibernate:hibernate-testing-jakarta:${hibernateVersion}" ) {
+			transitive=false
+			changing = true
+		}
+	}
+	else {
+		api( "org.hibernate:hibernate-core:${hibernateVersion}" ) {
+			changing = true
+		}
+		api( "org.hibernate:hibernate-testing:${hibernateVersion}" ) {
+			transitive=false
+			changing = true
+		}
+	}
+	api 'log4j:log4j:1.2.17'
+	//api 'org.javassist:javassist:3.23.2-GA'
+	api 'net.bytebuddy:byte-buddy:1.10.21'
 }
 
 wrapper {
