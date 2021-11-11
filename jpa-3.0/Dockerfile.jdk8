@@ -42,9 +42,9 @@ RUN wget https://archive.apache.org/dist/db/derby/db-derby-10.13.1.1/db-derby-10
 	&& mkdir -p ${DERBY_HOME} \
 	&& mv db-derby-10.13.1.1-bin ${DERBY_INSTALL_DIR}
  
-RUN wget http://www.trieuvan.com/apache//ant/binaries/apache-ant-1.9.15-bin.zip \
-	&& unzip -q apache-ant-1.9.15-bin.zip \
-	&& mv apache-ant-1.9.15 ${ANT_HOME}
+RUN wget https://dlcdn.apache.org//ant/binaries/apache-ant-1.9.16-bin.zip \
+	&& unzip -q apache-ant-1.9.16-bin.zip \
+	&& mv apache-ant-1.9.16 ${ANT_HOME}
 
 VOLUME /tck/persistence-tck/tmp/
 WORKDIR /tck
