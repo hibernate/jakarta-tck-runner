@@ -18,7 +18,7 @@ COPY gradlew /tck/
 COPY LICENSE /tck/
 COPY no-sleep.patch /tck/
 
-COPY base-ts.jte /tck/
+COPY base-ts.jte.jdk11 /tck/base-ts.jte
 COPY build.gradle /tck/
 COPY cleandb /tck/
 COPY derby.ddl.persistence.sql /tck/
