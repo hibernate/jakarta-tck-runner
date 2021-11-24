@@ -53,10 +53,10 @@ dependencies {
 		}
 	}
 	else {
-		api( "org.hibernate:hibernate-core:${hibernateVersion}" ) {
+		api( "org.hibernate.orm:hibernate-core:${hibernateVersion}" ) {
 			changing = true
 		}
-		api( "org.hibernate:hibernate-testing:${hibernateVersion}" ) {
+		api( "org.hibernate.orm:hibernate-testing:${hibernateVersion}" ) {
 			transitive=false
 			changing = true
 		}
