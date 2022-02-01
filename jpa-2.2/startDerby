@@ -9,5 +9,5 @@ SCRIPT_DIR=`pwd`
     cd ${DERBY_DATA_DIR}
 
     ## 10.4 provides an easier way to start (and stop) Derby
-    java -jar ${DERBY_INSTALL_DIR}/lib/derbyrun.jar server start &> ${DERBY_LOG_DIR}/db.log &
+    java -jar ${DERBY_INSTALL_DIR}/lib/derbyrun.jar server start &> ${DERBY_LOG_DIR}/db.log -Dderby.system.durability=test &
 )
