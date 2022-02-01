@@ -99,7 +99,7 @@ jakarta.persistence.jdbc.password=tck1
 ###############################################################
 #jpa.provider.implementation.specific.properties=eclipselink.logging.level\=OFF:hibernate.dialect\=org.hibernate.dialect.DerbyTenSevenDialect:hibernate.auto_quote_keyword\=false:hibernate.implicit_naming_strategy\=org.hibernate.boot.model.naming.ImplicitNamingStrategyJpaCompliantImpl
 
-jpa.provider.implementation.specific.properties=eclipselink.logging.level\=OFF:hibernate.query.jpaql_strict_compliance\=true:hibernate.show_sql\=true:hibernate.id.new_generator_mappings\=true:hibernate.cache.region.factory_class\=org.hibernate.testing.cache.CachingRegionFactory:hibernate.model.generator_name_as_sequence_name\=true:hibernate.jpa.compliance.transaction\=true:hibernate.jpa.compliance.closed\=true:hibernate.jpa.compliance.query\=true:hibernate.jpa.compliance.list\=true:hibernate.jpa.compliance.caching\=true:hibernate.jpa.compliance.global_id_generators\=true:hibernate.jpa.compliance.load_by_id\=true
+jpa.provider.implementation.specific.properties=eclipselink.logging.level\=OFF:hibernate.query.jpaql_strict_compliance\=true:hibernate.show_sql\=true:hibernate.id.new_generator_mappings\=true:hibernate.cache.region.factory_class\=org.hibernate.testing.cache.CachingRegionFactory:hibernate.model.generator_name_as_sequence_name\=true:hibernate.jpa.compliance.transaction\=true:hibernate.jpa.compliance.closed\=true:hibernate.jpa.compliance.query\=true:hibernate.jpa.compliance.list\=true:hibernate.jpa.compliance.caching\=true:hibernate.jpa.compliance.global_id_generators\=true:hibernate.jpa.compliance\=true
 
 ###############################################################
 # @db.supports.sequence
