@@ -141,10 +141,6 @@ persistence.second.level.caching.supported=true
 #sigTestClasspath=${jpa.classes}${pathsep}${JAVA_HOME}/lib/rt.jar${pathsep}${JAVA_HOME}/../Classes/classes.jar
 jimage.dir=${ts.home}/tmp/jdk-bundles
 
-<<<<<<< HEAD
-=======
-#sigTestClasspath=${concurrency.classes}${pathsep}${jimage.dir}/java.base${pathsep}${jimage.dir}/java.rmi${pathsep}${jimage.dir}/java.sql${pathsep}${jimage.dir}/java.naming
->>>>>>> 6c8a934 (Add podman script)
 sigTestClasspath=${jpa.classes}${pathsep}\
                  ${jimage.dir}/java.base${pathsep}\
                  ${jimage.dir}/java.rmi${pathsep}\
