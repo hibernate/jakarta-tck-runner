@@ -41,14 +41,29 @@ This can be done by passing the `NO_SLEEP` environment variable. The image can n
 
 The hibernate version to use for testing.
 
+### TEST_PATH
+
+TEST_PATH can be used to limite the tck tests that can be run.
+
+The paths are relative to the `.../com/sun/ts/tests`foder.
+
 
 ## Running the TCK
 
 ```
 docker rm -f tck
-docker rm -f tck-vol
+docker volume rm -f tck-vol
 docker volume create tck-vol
-docker run --name tck -v tck-vol:/tck/persistence-tck/tmp/ -e NO_SLEEP=true -e HIBERNATE_VERSION=5.5.0-SNAPSHOT jakarta-tck-runner
+docker run --name tck -v tck-vol:/tck/persistence-tck/tmp/ -e NO_SLEEP=true -e HIBERNATE_VERSION=6.0.0-SNAPSHOT jakarta-tck-runner
+```
+
+### Limiting tests execution
+
+E.g to limit the execution to the tests under `com/sun/ts/tests/jpa/se/schemaGeneration/annotations/index`
+
+```
+docker run --name tck -v tck-vol:/tck/persistence-tck/tmp/ -e NO_SLEEP=true -e HIBERNATE_VERSION=6.0.0-SNAPSHOT -e TEST_PATH=jpa/se/schemaGeneration/annotations/index jakarta-tck-runner
+
 ```
 
 If you want to test a self built version, map the locally installed hibernate jars through a volume mapping into the container:

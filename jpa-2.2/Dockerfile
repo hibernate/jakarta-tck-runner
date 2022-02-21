@@ -4,6 +4,7 @@ ARG SPEC_VERSION=2.2
 ARG TCK_VERSION=2.2.0
 ARG TCK_SHA=c9cdc30e0e462e875c80f0bd46b964dd8aa8c2a3b69ade49d11df7652f3b5c39
 ENV HIBERNATE_VERSION=5.5.0-SNAPSHOT
+ENV TEST_PATH=$TEST_FOLDER
 
 ADD https://download.eclipse.org/jakartaee/persistence/${SPEC_VERSION}/jakarta-persistence-tck-${TCK_VERSION}.zip /
 RUN cd / \

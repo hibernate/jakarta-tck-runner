@@ -18,9 +18,9 @@ rm -f $OUTPUT_PATH
 
     if [ "$1" != "" ]; then
         TEST_PATH=$TEST_PATH/$1
-##        echo "Running tests [$1] using TEST_PATH=$TEST_PATH"
-##    else 
-##        echo "Running all tests using TEST_PATH=$TEST_PATH"
+        echo "Running tests [$1] using TEST_PATH=$TEST_PATH"
+    else 
+        echo "Running all tests using TEST_PATH=$TEST_PATH"
     fi
 
 
