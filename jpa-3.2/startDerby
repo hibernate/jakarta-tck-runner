@@ -1,0 +1,13 @@
+#!/bin/bash
+
+SCRIPT_DIR=`pwd`
+
+(
+    ## The only way I know to get Derby to store its data files in 
+    ##     the directory I want is to `cd` into that dir prior to
+    ##     starting it.  It seems to use `pwd` to determine its data dir.
+    cd ${DERBY_DATA_DIR}
+
+    ## 10.4 provides an easier way to start (and stop) Derby
+    java -jar ${DERBY_INSTALL_DIR}/lib/derbyrun.jar server start &> ${DERBY_LOG_DIR}/db.log &
+)

@@ -1,0 +1,30 @@
+#!/bin/bash
+
+SCRIPT_DIR=`pwd`
+
+OUTPUT_PATH=$TS_HOME/tmp/orm-test-output.txt
+
+rm -f $OUTPUT_PATH
+
+(
+    cd $SCRIPT_DIR
+    ./gradlew syncDeps -PhibernateVersion=$HIBERNATE_VERSION &>$OUTPUT_PATH
+)
+
+
+{
+    echo "TS_HOME=${TS_HOME}"
+    TEST_PATH="$TS_HOME/src/com/sun/ts/tests"
+
+    if [ "$1" != "" ]; then
+        TEST_PATH=$TEST_PATH/$1
+        echo "Running tests [$1] using TEST_PATH=$TEST_PATH"
+    else
+        echo "Running all tests using TEST_PATH=$TEST_PATH"
+    fi
+
+
+    cd $TEST_PATH
+
+    ant runclient -Dfailonerror=false | tee $OUTPUT_PATH
+}
