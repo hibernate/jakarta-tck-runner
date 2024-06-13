@@ -10,45 +10,45 @@ else
 fi
 
 if [ "$RDBMS" == 'mysql' ]; then
-  mvn -f ${TCK_HOME}/persistence-tck/bin/pom.xml -P "hibernate,mysql" verify "-Dhibernate.version=${HIBERNATE_VERSION}" \
+  mvn -e -f ${TCK_HOME}/persistence-tck/bin/pom.xml -P "hibernate,mysql" verify "-Dhibernate.version=${HIBERNATE_VERSION}" \
     "-Dglassfish.container.version=${GF_VERSION}" \
     "-Djakarta.persistence.jdbc.user=hibernate_orm_test" \
     "-Djakarta.persistence.jdbc.password=hibernate_orm_test" \
     "-Djakarta.persistence.jdbc.url=jdbc:mysql://${DB_HOST:-localhost}/hibernate_orm_test?allowPublicKeyRetrieval=true"
 elif [ "$RDBMS" == 'postgresql' ]; then
-  mvn -f ${TCK_HOME}/persistence-tck/bin/pom.xml -P "hibernate,postgresql" verify "-Dhibernate.version=${HIBERNATE_VERSION}" \
+  mvn -e -f ${TCK_HOME}/persistence-tck/bin/pom.xml -P "hibernate,postgresql" verify "-Dhibernate.version=${HIBERNATE_VERSION}" \
     "-Dglassfish.container.version=${GF_VERSION}" \
     "-Djakarta.persistence.jdbc.user=hibernate_orm_test" \
     "-Djakarta.persistence.jdbc.password=hibernate_orm_test" \
     "-Djakarta.persistence.jdbc.url=jdbc:postgresql://${DB_HOST:-localhost}/hibernate_orm_test?preparedStatementCacheQueries=0&escapeSyntaxCallMode=callIfNoReturn"
 elif [ "$RDBMS" == 'db2' ]; then
-  mvn -f ${TCK_HOME}/persistence-tck/bin/pom.xml -P "hibernate,db2" verify "-Dhibernate.version=${HIBERNATE_VERSION}" \
+  mvn -e -f ${TCK_HOME}/persistence-tck/bin/pom.xml -P "hibernate,db2" verify "-Dhibernate.version=${HIBERNATE_VERSION}" \
     "-Dglassfish.container.version=${GF_VERSION}" \
     "-Djakarta.persistence.jdbc.user=orm_test" \
     "-Djakarta.persistence.jdbc.password=orm_test" \
     "-Djakarta.persistence.jdbc.url=jdbc:db2://${DB_HOST:-localhost}:50000/orm_test"
 elif [ "$RDBMS" == 'oracle' ]; then
-  mvn -f ${TCK_HOME}/persistence-tck/bin/pom.xml -P "hibernate,oracle" verify "-Dhibernate.version=${HIBERNATE_VERSION}" \
+  mvn -e -f ${TCK_HOME}/persistence-tck/bin/pom.xml -P "hibernate,oracle" verify "-Dhibernate.version=${HIBERNATE_VERSION}" \
     "-Dglassfish.container.version=${GF_VERSION}" \
     "-Djakarta.persistence.jdbc.user=hibernate_orm_test" \
     "-Djakarta.persistence.jdbc.password=hibernate_orm_test" \
     "-Djakarta.persistence.jdbc.url=jdbc:oracle:thin:@${DB_HOST:-localhost}:1521/freepdb1"
 elif [ "$RDBMS" == 'mssql' ]; then
-  mvn -f ${TCK_HOME}/persistence-tck/bin/pom.xml -P "hibernate,mssqlserver" verify "-Dhibernate.version=${HIBERNATE_VERSION}" \
+  mvn -e -f ${TCK_HOME}/persistence-tck/bin/pom.xml -P "hibernate,mssqlserver" verify "-Dhibernate.version=${HIBERNATE_VERSION}" \
     "-Dglassfish.container.version=${GF_VERSION}" \
     "-Djakarta.persistence.jdbc.user=sa" \
     "-Djakarta.persistence.jdbc.password=Hibernate_orm_test" \
     "-Djakarta.persistence.jdbc.url=jdbc:sqlserver://${DB_HOST:-localhost};databaseName=hibernate_orm_test;sendTimeAsDatetime=false;trustServerCertificate=true"
 elif [ "$RDBMS" == 'sybase' ]; then
   mvn org.apache.maven.plugins:maven-install-plugin:3.1.1:install-file -Dfile=${TCK_HOME}/jconn42.jar -DgroupId=com.sybase -DartifactId=jdbc42 -Dversion=1.0.0 -Dpackaging=jar
-  mvn -f ${TCK_HOME}/persistence-tck/bin/pom.xml -P "hibernate,sybase" verify "-Dhibernate.version=${HIBERNATE_VERSION}" \
+  mvn -e -f ${TCK_HOME}/persistence-tck/bin/pom.xml -P "hibernate,sybase" verify "-Dhibernate.version=${HIBERNATE_VERSION}" \
     "-Dglassfish.container.version=${GF_VERSION}" \
     "-Djakarta.persistence.jdbc.user=hibernate_orm_test" \
     "-Djakarta.persistence.jdbc.password=hibernate_orm_test" \
     "-Djakarta.persistence.jdbc.url=jdbc:sybase:Tds:${DB_HOST:-localhost}:9000/hibernate_orm_test" \
 	"-Djpa.provider.implementation.specific.additional.properties=:connection.init_sql=set ansinull on set quoted_identifier on"
 elif [ "$RDBMS" == 'derby' ] || [ -z "$RDBMS" ]; then
-  mvn -f ${TCK_HOME}/persistence-tck/bin/pom.xml -P "hibernate,derby" verify "-Dhibernate.version=${HIBERNATE_VERSION}" \
+  mvn -e -f ${TCK_HOME}/persistence-tck/bin/pom.xml -P "hibernate,derby" verify "-Dhibernate.version=${HIBERNATE_VERSION}" \
     "-Dglassfish.container.version=${GF_VERSION}" \
     "-Djakarta.persistence.jdbc.user=hibernate_orm_test" \
     "-Djakarta.persistence.jdbc.password=hibernate_orm_test" \
