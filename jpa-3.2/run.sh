@@ -46,6 +46,7 @@ elif [ "$RDBMS" == 'sybase' ]; then
     "-Djakarta.persistence.jdbc.user=hibernate_orm_test" \
     "-Djakarta.persistence.jdbc.password=hibernate_orm_test" \
     "-Djakarta.persistence.jdbc.url=jdbc:sybase:Tds:${DB_HOST:-localhost}:9000/hibernate_orm_test" \
+	"-Djakarta.persistence.jdbc.driver=com.sybase.jdbc4.jdbc.SybDriver" \
 	"-Djpa.provider.implementation.specific.additional.properties=:connection.init_sql=set ansinull on set quoted_identifier on"
 elif [ "$RDBMS" == 'derby' ] || [ -z "$RDBMS" ]; then
   mvn -e -f ${TCK_HOME}/persistence-tck/bin/pom.xml -P "hibernate,derby" verify "-Dhibernate.version=${HIBERNATE_VERSION}" \
