@@ -9,6 +9,7 @@ else
 	GF_VERSION=8.0.0-M5
 fi
 
+set -x
 if [ "$RDBMS" == 'mysql' ]; then
   mvn -e -f ${TCK_HOME}/persistence-tck/bin/pom.xml -P "hibernate,mysql" verify "-Dhibernate.version=${HIBERNATE_VERSION}" \
     "-Dglassfish.container.version=${GF_VERSION}" \
@@ -20,7 +21,8 @@ elif [ "$RDBMS" == 'postgresql' ]; then
     "-Dglassfish.container.version=${GF_VERSION}" \
     "-Djakarta.persistence.jdbc.user=hibernate_orm_test" \
     "-Djakarta.persistence.jdbc.password=hibernate_orm_test" \
-    "-Djakarta.persistence.jdbc.url=jdbc:postgresql://${DB_HOST:-localhost}/hibernate_orm_test?preparedStatementCacheQueries=0&escapeSyntaxCallMode=callIfNoReturn"
+    "-Djakarta.persistence.jdbc.url=jdbc:postgresql://${DB_HOST:-localhost}/hibernate_orm_test?preparedStatementCacheQueries=0&escapeSyntaxCallMode=callIfNoReturn" \
+    "-Dpostgresql.jdbc.version=42.7.4"
 elif [ "$RDBMS" == 'db2' ]; then
   mvn -e -f ${TCK_HOME}/persistence-tck/bin/pom.xml -P "hibernate,db2" verify "-Dhibernate.version=${HIBERNATE_VERSION}" \
     "-Dglassfish.container.version=${GF_VERSION}" \

@@ -2,7 +2,7 @@ FROM maven:3.9.6-eclipse-temurin-17
 
 ARG SPEC_VERSION=3.2
 ARG TCK_VERSION=3.2.0
-ARG TCK_SHA=bfd953b88bb4a87b66d41d55405671bdc5d0c05fbf6d05578d756df85bf8dc5d
+ARG TCK_SHA=db74101c3f52f737f57804271ea9c845cb1941f2a0685284c54c4ad4fa1f05c7
 ARG TCK_URL=https://download.eclipse.org/jakartaee/persistence/${SPEC_VERSION}/jakarta-persistence-tck-${TCK_VERSION}.zip
 ENV HIBERNATE_VERSION=7.0.0-SNAPSHOT
 
