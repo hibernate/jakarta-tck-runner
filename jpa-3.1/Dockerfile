@@ -1,15 +1,20 @@
-FROM openjdk:8-jdk
+FROM eclipse-temurin:8
 
-ARG SPEC_VERSION=3.0
-ARG TCK_VERSION=3.0.0
-ARG TCK_SHA=b08c8887f00306f8bb7ebe54c4c810f3452519f5395733637ccc639b5081aebf
-ENV HIBERNATE_VERSION=5.5.0-SNAPSHOT
+ARG SPEC_VERSION=3.1
+ARG TCK_VERSION=3.1.6
+ARG TCK_SHA=790ca7a2a95ea098cfedafa2689c0d7a379fa62c74fed9505dd23191292f59fe
+ARG TCK_URL=https://download.eclipse.org/jakartaee/persistence/${SPEC_VERSION}/jakarta-persistence-tck-${TCK_VERSION}.zip
+ENV HIBERNATE_VERSION=6.0.0-SNAPSHOT
 ENV TEST_PATH=$TEST_FOLDER
 
-ADD https://download.eclipse.org/jakartaee/persistence/${SPEC_VERSION}/jakarta-persistence-tck-${TCK_VERSION}.zip /
-RUN cd / \
-	&& echo "${TCK_SHA} *jakarta-persistence-tck-${TCK_VERSION}.zip" | sha256sum -c - \
-	&& mkdir /tck \
+RUN apt-get update \
+	&& apt-get install -y unzip\
+    && rm -rf /var/lib/apt/lists/*
+
+ADD ${TCK_URL} /
+RUN cd /
+RUN [ -z "$TCK_SHA" ] || echo "${TCK_SHA} *jakarta-persistence-tck-${TCK_VERSION}.zip" | sha256sum -c -
+RUN mkdir /tck \
 	&& unzip -q /jakarta-persistence-tck-${TCK_VERSION}.zip \
 	&& mv /persistence-tck /tck/persistence-tck \
 	&& rm /jakarta-persistence-tck-${TCK_VERSION}.zip
@@ -43,9 +48,9 @@ RUN wget https://archive.apache.org/dist/db/derby/db-derby-10.13.1.1/db-derby-10
 	&& mkdir -p ${DERBY_HOME} \
 	&& mv db-derby-10.13.1.1-bin ${DERBY_INSTALL_DIR}
  
-RUN wget http://www.trieuvan.com/apache//ant/binaries/apache-ant-1.9.15-bin.zip \
-	&& unzip -q apache-ant-1.9.15-bin.zip \
-	&& mv apache-ant-1.9.15 ${ANT_HOME}
+RUN wget https://dlcdn.apache.org//ant/binaries/apache-ant-1.9.16-bin.zip \
+	&& unzip -q apache-ant-1.9.16-bin.zip \
+	&& mv apache-ant-1.9.16 ${ANT_HOME}
 
 VOLUME /tck/persistence-tck/tmp/
 WORKDIR /tck

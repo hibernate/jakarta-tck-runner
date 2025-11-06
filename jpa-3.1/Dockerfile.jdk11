@@ -1,11 +1,15 @@
-FROM openjdk:11-jdk
+FROM eclipse-temurin:11
 
 ARG SPEC_VERSION=3.1
-ARG TCK_VERSION=3.1.0
-ARG TCK_SHA=21441d1b1ec04fb696febcb897beb103cfee8d7d50137fec7c564e32626d9941
+ARG TCK_VERSION=3.1.6
+ARG TCK_SHA=790ca7a2a95ea098cfedafa2689c0d7a379fa62c74fed9505dd23191292f59fe
 ARG TCK_URL=https://download.eclipse.org/jakartaee/persistence/${SPEC_VERSION}/jakarta-persistence-tck-${TCK_VERSION}.zip
 ENV HIBERNATE_VERSION=6.0.0-SNAPSHOT
 ENV TEST_PATH=$TEST_FOLDER
+
+RUN apt-get update \
+	&& apt-get install -y unzip\
+    && rm -rf /var/lib/apt/lists/*
 
 ADD ${TCK_URL} /
 RUN cd /
